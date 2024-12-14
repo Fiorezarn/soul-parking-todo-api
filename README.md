@@ -1,96 +1,65 @@
-# Backend Engineer Test - To-Do List API
-
-## Overview
+# 🧾 TODO API
 
 This project is a high-performance RESTful API for a simple to-do list system, built using Express.js. It demonstrates the implementation of CRUD operations, input validation, and proper API structuring.
 
-## Features
+## ✨ Features
 
-- Create, read, update, and delete to-do items
-- Mark to-do items as finished
-- Soft delete functionality
-- Input validation using Joi
-- RESTful API design
-- In-memory data storage (no database required)
+- ✅ Create, read, update, and delete to-do items
+- 🏁 Mark to-do items as finished
+- 🗑️ Soft delete functionality
+- 🛡️ Input validation using Joi
+- 🌐 RESTful API design
+- 💾 In-memory data storage (no database required)
 
-## API Endpoints
+## 🛣️ API Documentations
+![swagger-soul](https://github.com/user-attachments/assets/767edf43-69e1-4077-b41b-47e798179d9f)
+Check out the live version of Todo API: 🌐[Todo API Deployment](https://soul-parking-todo-api.onrender.com/api-docs/)
 
-- `POST /todo`: Create a new to-do
-- `GET /todo`: Retrieve all to-dos
-- `GET /todo/:id`: Retrieve a to-do by ID
-- `PUT/PATCH /todo/:id`: Update a to-do
-- `POST /todo/:id/finish`: Mark a to-do as finished
-- `DELETE /todo/:id`: Soft delete a to-do
+## 📊 To-Do Data Structure
 
-## To-Do Data Structure
+| Field | Type | Description |
+|-------|------|-------------|
+| 🆔 id | 🔢 Number | Unique identifier for the to-do item |
+| 📌 title | 📝 String | Title of the to-do |
+| 📄 description | 📝 String | Description of the to-do |
+| ⏱️ finished_at | 📅 Date | Time the to-do was finished (format: dd-mm-yyyy HH:MM:SS) |
+| 🎬 created_at | 📅 Date | Time the to-do was created (format: dd-mm-yyyy HH:MM:SS) |
+| 🔄 updated_at | 📅 Date | Time the to-do was last updated (format: dd-mm-yyyy HH:MM:SS) |
+| 🗑️ deleted_at | 📅 Date | Time the to-do was soft deleted (format: dd-mm-yyyy HH:MM:SS) |
 
-- `id`: Unique ID
-- `title`: Title of the to-do
-- `description`: Description of the to-do
-- `finished_at`: Time the to-do was finished (format: dd-mm-yyyy HH:MM:SS)
-- `created_at`: Time the to-do was created (format: dd-mm-yyyy HH:MM:SS)
-- `updated_at`: Time the to-do was updated (format: dd-mm-yyyy HH:MM:SS)
-- `deleted_at`: Time the to-do was deleted (format: dd-mm-yyyy HH:MM:SS)
+## 🛠️ Technologies Used
 
-## Technologies Used
+[![Node.js](https://img.shields.io/badge/-Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
+[![Express.js](https://img.shields.io/badge/-Express.js-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
+[![npm](https://img.shields.io/badge/-npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)](https://www.npmjs.com/)
+[![dotenv](https://img.shields.io/badge/-dotenv-ECD53F?style=for-the-badge&logo=dotenv&logoColor=black)](https://github.com/motdotla/dotenv)
+[![Joi](https://img.shields.io/badge/-Joi-0080FF?style=for-the-badge&logo=joi&logoColor=white)](https://joi.dev/)
+[![Nodemon](https://img.shields.io/badge/-Nodemon-76D04B?style=for-the-badge&logo=nodemon&logoColor=white)](https://nodemon.io/)
 
-- Node.js
-- Express.js
-- Body-parser
-- Dotenv
-- Joi
-- Module-alias
-- Nodemon (for development)
+## 🛠 Installation
 
-## Getting Started
+1. Clone this repository:
 
-### Prerequisites
-
-- Node.js (v14 or later)
-- npm (v6 or later)
-
-### Installation
-
-1. Clone the repository:
+```shellscript
+git clone https://github.com/Fiorezarn/soul-parking-todo-api
+cd <soul-parking-todo-api>
 ```
 
-git clone [https://github.com/Fiorezarn/soul-parking-todo-api](https://github.com/Fiorezarn/soul-parking-todo-api)
+2. Install dependencies:
 
-2. Navigate to the project directory:
-```
-
-cd backend-engineer-test
-
-```plaintext
-
-3. Install dependencies:
-```
-
+```shellscript
 npm install
-
-```plaintext
-
-4. Create a `.env` file in the root directory and add the following:
 ```
 
-PORT=3000
+3. Create a `.env` file for database and JWT configuration:
 
 ```plaintext
-
-### Running the Application
-
-For development (with auto-restart on file changes):
+PORT=your_port
+BASE_URL=your_baseurl
 ```
 
-npm run dev
+6. Start the server:
 
-```plaintext
-
-For production:
-```
-
+```shellscript
 npm start
-
-```plaintext
-
 ```
