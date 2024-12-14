@@ -77,7 +77,6 @@ const updateTodos = async (req, res) => {
     if (todoIndex === -1) {
       return errorClientResponse(res, `Todo with id ${id} not found`, 404);
     }
-
     const updatedTodo = {
       ...Todos[todoIndex],
       title: title || Todos[todoIndex].title,
