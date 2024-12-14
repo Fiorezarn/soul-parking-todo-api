@@ -8,6 +8,10 @@ const {
   updateTodos,
   finishTodo,
 } = require("@/controllers/todo.controller");
+const {
+  todosValidation,
+  checkDuplicateTitle,
+} = require("@/validations/todos.validation");
 
 /**
  * @swagger
@@ -77,7 +81,7 @@ router.get("/", getTodos);
  *             schema:
  *               $ref: '#/components/schemas/Todo'
  */
-router.post("/", createTodos);
+router.post("/", todosValidation, checkDuplicateTitle, createTodos);
 
 /**
  * @swagger
