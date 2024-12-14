@@ -20,7 +20,12 @@ const options = {
     openapi: "3.0.0",
     servers: [
       {
-        url: `${baseUrl}:${port}`,
+        url: "http://localhost:3000",
+        description: "Development Server",
+      },
+      {
+        url: "https://soul-parking-todo-api.onrender.com/",
+        description: "Production Server",
       },
     ],
     info: {
