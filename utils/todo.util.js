@@ -3,9 +3,20 @@ const path = require("path");
 
 const todosFilePath = path.join(__dirname, "../mock/todos.json");
 
-const readTodos = () => {
+const readTodos = (search = false, isDeleted = 1) => {
   const data = fs.readFileSync(todosFilePath, "utf-8");
-  return JSON.parse(data);
+  let datas = JSON.parse(data);
+  if (search) {
+    datas = datas.filter(
+      (todo) =>
+        todo.title.toLowerCase().includes(search.toLowerCase()) ||
+        todo.description.toLowerCase().includes(search.toLowerCase())
+    );
+  }
+  if (Number(isDeleted) === 0) {
+    datas = datas.filter((todo) => !todo.deleted_at);
+  }
+  return datas;
 };
 
 const writeTodos = (todos) => {

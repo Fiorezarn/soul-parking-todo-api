@@ -7,8 +7,14 @@ const {
 const { readTodos, writeTodos } = require("@/utils/todo.util");
 
 const getTodos = async (req, res) => {
-  const Todos = readTodos();
-  return successResponseData(res, "Succesfully get all todos", Todos, 201);
+  try {
+    const { search, isDeleted } = req.query;
+    const Todos = readTodos(search, isDeleted);
+    return successResponseData(res, "Succesfully get all todos", Todos, 201);
+  } catch (error) {
+    console.log(error.message);
+    return errorServerResponse(res, error.message);
+  }
 };
 
 const getTodosById = async (req, res) => {
@@ -26,6 +32,7 @@ const getTodosById = async (req, res) => {
       200
     );
   } catch (error) {
+    console.log(error.message);
     return errorServerResponse(res, error.message);
   }
 };
@@ -52,6 +59,7 @@ const createTodos = async (req, res) => {
       201
     );
   } catch (error) {
+    console.log(error.message);
     return errorServerResponse(res, error.message);
   }
 };
@@ -61,7 +69,10 @@ const updateTodos = async (req, res) => {
     const { id } = req.params;
     const { title, description } = req.body;
     const Todos = readTodos();
-    const todoIndex = Todos.findIndex((todo) => todo.id === Number(id));
+    const todoIndex = Todos.findIndex((todo) => {
+      return todo.id === Number(id);
+    });
+
     if (todoIndex === -1) {
       return errorClientResponse(res, `Todo with id ${id} not found`, 404);
     }
@@ -72,6 +83,7 @@ const updateTodos = async (req, res) => {
       finished_at: Todos[todoIndex].finished_at,
       updated_at: new Date().toISOString(),
     };
+
     Todos[todoIndex] = updatedTodo;
     writeTodos(Todos);
     return successResponseData(
@@ -81,6 +93,7 @@ const updateTodos = async (req, res) => {
       200
     );
   } catch (error) {
+    console.log(error.message);
     return errorClientResponse(res, error.message, 500);
   }
 };
@@ -97,6 +110,7 @@ const finishTodo = async (req, res) => {
     writeTodos(Todos);
     return successResponse(res, `Success Finish data with id ${id}`);
   } catch (error) {
+    console.log(error.message);
     return errorClientResponse(res, error.message);
   }
 };
@@ -113,6 +127,7 @@ const deleteTodo = async (req, res) => {
     writeTodos(Todos);
     return successResponse(res, `Success Delete data with id ${id}`);
   } catch (error) {
+    console.log(error.message);
     return errorClientResponse(res, error.message);
   }
 };
